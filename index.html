@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Raffup</title>
+  </head>
+
+  <body>
+
+    <a class="login" href="https://secure.meetup.com/oauth2/authorize?client_id=mdvcot05523d0o1qfl7rfhjt8a&response_type=token&redirect_uri=http://localhost:8000">Login with Meetup</a>
+
+    <p class="welcome"></p>
+
+    <section class="meetups"></section>
+
+    <section class="rsvps"></section>
+
+    <script type="text/template" class="welcome-tpl">
+      Hi <%= name %>
+    </script>
+
+    <script type="text/template" class="meetups-tpl">
+      <table>
+      <tr><th>Group</th><th>Event</th><th>RSVPS</th></tr>
+      <%  _.each(meetups, function(meetup) { %>
+        <tr>
+          <td><%= meetup.group.name %></td>
+          <td><a href="#" data-meetup-id="<%= meetup.id %>" class="meetup"><%= meetup.name %></a></td>
+          <td><%= meetup.yes_rsvp_count %></td>
+        </tr>
+      <% }) %>
+      </table>
+    </script>
+
+    <script type="text/template" class="rsvps-tpl">
+      <% _.each(rsvps, function(rsvp) { %>
+        <% if (rsvp.member_photo) { %>
+          <img src="<%= rsvp.member_photo.thumb_link %>" alt="<%= rsvp.member.name %>" />
+        <% } %>
+      <% }) %>
+    </script>
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="js/events.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/meetup.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
