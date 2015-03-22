@@ -3,13 +3,13 @@ var app = app || {}
 app.main = (function($, _) {
 
   var $elements = {
-    login:      $('.login'),
-    welcome:    $('.welcome'),
-    welcomeTpl: _.template($('.welcome-tpl').text()),
-    meetups:    $('.meetups'),
-    meetupsTpl: _.template($('.meetups-tpl').text()),
-    rsvps:      $('.rsvps'),
-    rsvpsTpl:   _.template($('.rsvps-tpl').text())
+    login:          $('.login'),
+    welcome:        $('.welcome'),
+    meetups:        $('.meetups'),
+    attendants:     $('.attendants'),
+    welcomeTpl:     _.template($('.welcome-tpl').text()),
+    meetupsTpl:     _.template($('.meetups-tpl').text()),
+    attendantsTpl:  _.template($('.attendants-tpl').text())
   }
 
   var attachEvents = function() {
@@ -19,8 +19,7 @@ app.main = (function($, _) {
     })
 
     app.events.subscribe('meetup:got:recentMeetups', render.meetups)
-
-    app.events.subscribe('meetup:got:rsvps', render.rsvps)
+    app.events.subscribe('meetup:got:rsvps', render.attendants)
 
     $(document).on('click', '.meetup', function(event) {
       event.preventDefault()
@@ -47,8 +46,9 @@ app.main = (function($, _) {
     meetups: function(data) {
       $elements.meetups.html($elements.meetupsTpl({meetups: data.results}))
     },
-    rsvps: function(data) {
-      $elements.rsvps.html($elements.rsvpsTpl({rsvps: data.results}))
+    attendants: function(data) {
+      var attendants = app.attendant.createAttendants(data)
+      $elements.attendants.html($elements.attendantsTpl({attendants: attendants}))
     },
     welcome: function() {
       $elements.login.hide()
