@@ -34,7 +34,6 @@
     <script type="text/template" class="attendants-tpl">
       <% _.each(attendants, function(attendant) { %>
         <% if (attendant.photo) { %>
-          <% console.log(attendant) %>
           <img src="<%= attendant.photo.thumbLink %>" alt="<%= attendant.name %>" />
         <% } %>
       <% }) %>
