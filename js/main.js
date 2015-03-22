@@ -4,8 +4,6 @@ app.main = (function($, _) {
 
   var $elements = {
     login:      $('.login'),
-    welcome:    $('.welcome'),
-    welcomeTpl: _.template($('.welcome-tpl').text()),
     meetups:    $('.meetups'),
     meetupsTpl: _.template($('.meetups-tpl').text()),
     rsvps:      $('.rsvps'),
@@ -39,7 +37,7 @@ app.main = (function($, _) {
     init: function(data) {
       user.name = data.name
       user.id   = data.id
-      render.welcome()
+      $elements.login.hide()
     }
   }
 
@@ -49,10 +47,6 @@ app.main = (function($, _) {
     },
     rsvps: function(data) {
       $elements.rsvps.html($elements.rsvpsTpl({rsvps: data.results}))
-    },
-    welcome: function() {
-      $elements.login.hide()
-      $elements.welcome.html($elements.welcomeTpl({name: user.name}))
     }
   }
 
