@@ -3,20 +3,20 @@ var app = app || {}
 app.main = (function($, _) {
 
   var $elements = {
-    login:      $('.login'),
-    meetups:    $('.meetups'),
-    meetupsTpl: _.template($('.meetups-tpl').text()),
-    rsvps:      $('.rsvps'),
-    rsvpsTpl:   _.template($('.rsvps-tpl').text())
+    login:     $('.login'),
+    meetup:    $('.meetup'),
+    meetupTpl: _.template($('.meetup-tpl').text()),
+    rsvps:     $('.rsvps'),
+    rsvpsTpl:  _.template($('.rsvps-tpl').text())
   }
 
   var attachEvents = function() {
     app.events.subscribe('meetup:got:currentUser', function(data) {
       user.init(data)
-      app.meetup.getRecentMeetups()
+      app.meetup.getMeetup()
     })
 
-    app.events.subscribe('meetup:got:recentMeetups', render.meetups)
+    app.events.subscribe('meetup:got:meetup', render.meetup)
 
     app.events.subscribe('meetup:got:rsvps', render.rsvps)
 
@@ -42,8 +42,9 @@ app.main = (function($, _) {
   }
 
   var render = {
-    meetups: function(data) {
-      $elements.meetups.html($elements.meetupsTpl({meetups: data.results}))
+    meetup: function(data) {
+      var template = $elements.meetupTpl(data)
+      $elements.meetup.html(template)
     },
     rsvps: function(data) {
       $elements.rsvps.html($elements.rsvpsTpl({rsvps: data.results}))

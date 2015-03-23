@@ -13,16 +13,16 @@ app.meetup = (function($) {
     })
   }
 
-  var getRecentMeetups = function() {
-    $.get(BASE_URL + "/events", {
-      access_token: app.main.user.token,
-      member_id:    app.main.user.id,
-      status:       "past",
-      rsvp:         "yes",
-      desc:         true,
-      page:         5
+  var getMeetup = function() {
+    $.get(BASE_URL + '/events', {
+      access_token:  app.main.user.token,
+      group_urlname: 'VegasJS',
+      status:        'past',
+      rsvp:          'yes',
+      desc:          true,
+      page:          1
     }).done(function(data) {
-      app.events.publish('meetup:got:recentMeetups', data)
+      app.events.publish('meetup:got:meetup', data.results[0])
     })
   }
 
@@ -37,9 +37,9 @@ app.meetup = (function($) {
   }
 
   return {
-    getCurrentUser:   getCurrentUser,
-    getRecentMeetups: getRecentMeetups,
-    getRSVPS:         getRSVPS
+    getCurrentUser: getCurrentUser,
+    getMeetup:      getMeetup,
+    getRSVPS:       getRSVPS
   }
 
 })(jQuery)
