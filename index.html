@@ -12,7 +12,7 @@
 
     <section class="meetups"></section>
 
-    <section class="rsvps"></section>
+    <section class="attendants"></section>
 
     <script type="text/template" class="welcome-tpl">
       Hi <%= name %>
@@ -31,10 +31,10 @@
       </table>
     </script>
 
-    <script type="text/template" class="rsvps-tpl">
-      <% _.each(rsvps, function(rsvp) { %>
-        <% if (rsvp.member_photo) { %>
-          <img src="<%= rsvp.member_photo.thumb_link %>" alt="<%= rsvp.member.name %>" />
+    <script type="text/template" class="attendants-tpl">
+      <% _.each(attendants, function(attendant) { %>
+        <% if (attendant.photo) { %>
+          <img src="<%= attendant.photo.thumbLink %>" alt="<%= attendant.name %>" />
         <% } %>
       <% }) %>
     </script>
@@ -43,6 +43,7 @@
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="js/events.js"></script>
     <script src="js/utils.js"></script>
+    <script src="js/attendant.js"></script>
     <script src="js/meetup.js"></script>
     <script src="js/main.js"></script>
   </body>
