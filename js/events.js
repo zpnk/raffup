@@ -6,9 +6,15 @@ app.events = (function($) {
     $(document).trigger(name, [data])
   }
 
-  var subscribe = function(name, callback) {
+  var subscribe = function(name, callbacks) {
     $(document).on(name, function(event, data) {
-      callback(data)
+      if (Array.isArray(callbacks)) {
+        callbacks.forEach(function(callback) {
+          callback(data)
+        })
+      } else {
+        callbacks(data)
+      }
     })
   }
 

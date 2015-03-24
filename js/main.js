@@ -11,10 +11,8 @@ app.main = (function($, _) {
   }
 
   var attachEvents = function() {
-    app.events.subscribe('meetup:got:user', function(data) {
-      user.init(data)
-      app.meetup.getMeetup()
-    })
+    app.events.subscribe('meetup:got:user',
+      [user.init, app.meetup.getMeetup])
 
     app.events.subscribe('meetup:got:meetup', render.meetup)
 
