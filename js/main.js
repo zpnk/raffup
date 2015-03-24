@@ -11,7 +11,7 @@ app.main = (function($, _) {
   }
 
   var attachEvents = function() {
-    app.events.subscribe('meetup:got:currentUser', function(data) {
+    app.events.subscribe('meetup:got:user', function(data) {
       user.init(data)
       app.meetup.getMeetup()
     })
@@ -31,7 +31,7 @@ app.main = (function($, _) {
       var token = app.utils.params().access_token
       if (token) {
         user.token = token
-        app.meetup.getCurrentUser()
+        app.meetup.getUser()
       }
     },
     init: function(data) {

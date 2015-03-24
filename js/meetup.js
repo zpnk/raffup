@@ -2,14 +2,13 @@ var app = app || {}
 
 app.meetup = (function($) {
 
-  var BASE_URL = "https://api.meetup.com/2"
+  var BASE_URL = 'https://api.meetup.com/2'
 
-  var getCurrentUser = function() {
-    $.get(BASE_URL + "/member/self/", {
+  var getUser = function() {
+    $.get(BASE_URL + '/member/self/', {
       access_token: app.main.user.token
     }).done(function(data) {
-      // window.location.hash = ''
-      app.events.publish('meetup:got:currentUser', data)
+      app.events.publish('meetup:got:user', data)
     })
   }
 
@@ -37,9 +36,9 @@ app.meetup = (function($) {
   }
 
   return {
-    getCurrentUser: getCurrentUser,
-    getMeetup:      getMeetup,
-    getRSVPS:       getRSVPS
+    getUser:   getUser,
+    getMeetup: getMeetup,
+    getRSVPS:  getRSVPS
   }
 
 })(jQuery)
