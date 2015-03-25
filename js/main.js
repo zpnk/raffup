@@ -46,8 +46,18 @@ app.main = (function($, _) {
       $elements.meetup.html(template)
     },
     attendees: function(data) {
-      var template = $elements.attendeesTpl({attendees: data.results})
+      var template = $elements.attendeesTpl({
+        attendees: data.results,
+        photo:     render.photo
+      })
       $elements.attendees.html(template)
+    },
+    photo: function(user) {
+      if ('member_photo' in user) {
+        return user.member_photo.photo_link
+      } else {
+        return 'https://randomuser.me/api/portraits/lego/1.jpg'
+      }
     }
   }
 
