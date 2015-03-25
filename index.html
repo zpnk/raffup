@@ -10,7 +10,7 @@
 
     <section class="meetup"></section>
 
-    <section class="rsvps"></section>
+    <section class="attendees"></section>
 
     <script type="text/template" class="meetup-tpl">
       <h3><%= name %></h3>
@@ -20,10 +20,14 @@
       </p>
     </script>
 
-    <script type="text/template" class="rsvps-tpl">
-      <% _.each(rsvps, function(rsvp) { %>
-        <% if (rsvp.member_photo) { %>
-          <img src="<%= rsvp.member_photo.thumb_link %>" alt="<%= rsvp.member.name %>" />
+    <script type="text/template" class="attendees-tpl">
+      <% attendees.forEach(function(attendee) { %>
+        <% if (attendee.member_photo) { %>
+          <img src="<%= attendee.member_photo.thumb_link %>"
+            title="<%= attendee.member.name %>" />
+        <% } else { %>
+          <img src="https://randomuser.me/api/portraits/lego/1.jpg"
+            style="height:80px;width:80px" />
         <% } %>
       <% }) %>
     </script>

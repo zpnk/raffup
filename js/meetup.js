@@ -25,20 +25,20 @@ app.meetup = (function($) {
     })
   }
 
-  var getRSVPS = function(id) {
-    $.get(BASE_URL + "/rsvps", {
+  var getAttendees = function(event) {
+    $.get(BASE_URL + '/rsvps', {
       access_token: app.main.user.token,
-      event_id:     id,
-      rsvp:         "yes"
+      event_id:     event.id,
+      rsvp:         'yes'
     }).done(function(data) {
-      app.events.publish('meetup:got:rsvps', data)
+      app.events.publish('meetup:got:attendees', data)
     })
   }
 
   return {
-    getUser:   getUser,
-    getMeetup: getMeetup,
-    getRSVPS:  getRSVPS
+    getUser:      getUser,
+    getMeetup:    getMeetup,
+    getAttendees: getAttendees
   }
 
 })(jQuery)
