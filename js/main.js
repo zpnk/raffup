@@ -21,13 +21,8 @@ app.main = (function($, _) {
 
     app.events.subscribe('meetup:got:attendees',
       [render.attendees, raffle])
-  }
 
-  var raffle = function(attendees) {
-    $(document).on('click', '.raffle', function(event) {
-      var winner = _.sample(attendees.results)
-      render.winner(winner)
-    })
+    $elements.login.on('click', sendToMeetup)
   }
 
   var user = {
@@ -42,11 +37,18 @@ app.main = (function($, _) {
     init: function(data) {
       user.name = data.name
       user.id   = data.id
-      $elements.login.hide()
+      app.utils.removeParams()
+      render.logout()
     }
   }
 
   var render = {
+    logout: function() {
+      $elements.login.html('Logout').on('click', function(){
+        this.href = window.location.href
+      })
+    },
+
     meetup: function(data) {
       var template = $elements.meetupTpl(data)
       $elements.meetup.html(template)
@@ -75,6 +77,22 @@ app.main = (function($, _) {
         return 'https://randomuser.me/api/portraits/lego/1.jpg'
       }
     }
+  }
+
+  var raffle = function(attendees) {
+    $(document).on('click', '.raffle', function(event) {
+      var winner = _.sample(attendees.results)
+      render.winner(winner)
+    })
+  }
+
+  var sendToMeetup = function() {
+    var params = {
+      client_id:     'mdvcot05523d0o1qfl7rfhjt8a',
+      response_type: 'token',
+      redirect_uri:  window.location.href
+    }
+    this.href = this.href + '?' + $.param(params)
   }
 
   var init = function() {

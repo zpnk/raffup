@@ -14,6 +14,10 @@ app.utils = {
     })
 
     return params
+  },
+
+  removeParams: function() {
+    history.replaceState('', document.title, window.location.pathname)
   }
 
 }
