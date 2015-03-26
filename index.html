@@ -12,6 +12,8 @@
 
     <section class="attendees"></section>
 
+    <section class="winner"></section>
+
     <script type="text/template" class="meetup-tpl">
       <h3><%= name %></h3>
       <p>
@@ -25,6 +27,13 @@
         <img src="<%= photo(attendee) %>"
             title="<%= attendee.member.name %>" style="height:80px" />
       <% }) %>
+      <br />
+      <button class="raffle">Raffle!</button>
+    </script>
+
+    <script type="text/template" class="winner-tpl">
+      <p>Congratulations, <b><%= name %></b>!</p>
+      <img src="<%= photo %>" style="height:80px" />
     </script>
 
     <script src="bower_components/jquery/dist/jquery.js"></script>

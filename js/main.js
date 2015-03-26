@@ -7,7 +7,9 @@ app.main = (function($, _) {
     meetup:       $('.meetup'),
     meetupTpl:    _.template($('.meetup-tpl').text()),
     attendees:    $('.attendees'),
-    attendeesTpl: _.template($('.attendees-tpl').text())
+    attendeesTpl: _.template($('.attendees-tpl').text()),
+    winner:       $('.winner'),
+    winnerTpl:    _.template($('.winner-tpl').text())
   }
 
   var attachEvents = function() {
@@ -17,11 +19,14 @@ app.main = (function($, _) {
     app.events.subscribe('meetup:got:meetup',
       [render.meetup, app.meetup.getAttendees])
 
-    app.events.subscribe('meetup:got:attendees', render.attendees)
+    app.events.subscribe('meetup:got:attendees',
+      [render.attendees, raffle])
+  }
 
-    $(document).on('click', '.meetup', function(event) {
-      event.preventDefault()
-      app.meetup.getRSVPS($(this).data('meetup-id'))
+  var raffle = function(attendees) {
+    $(document).on('click', '.raffle', function(event) {
+      var winner = _.sample(attendees.results)
+      render.winner(winner)
     })
   }
 
@@ -33,6 +38,7 @@ app.main = (function($, _) {
         app.meetup.getUser()
       }
     },
+
     init: function(data) {
       user.name = data.name
       user.id   = data.id
@@ -45,6 +51,7 @@ app.main = (function($, _) {
       var template = $elements.meetupTpl(data)
       $elements.meetup.html(template)
     },
+
     attendees: function(data) {
       var template = $elements.attendeesTpl({
         attendees: data.results,
@@ -52,6 +59,15 @@ app.main = (function($, _) {
       })
       $elements.attendees.html(template)
     },
+
+    winner: function(winner) {
+      template = $elements.winnerTpl({
+        name:  winner.member.name,
+        photo: render.photo(winner)
+      })
+      $elements.winner.html(template)
+    },
+
     photo: function(user) {
       if ('member_photo' in user) {
         return user.member_photo.photo_link
@@ -62,8 +78,8 @@ app.main = (function($, _) {
   }
 
   var init = function() {
-    attachEvents();
-    user.login();
+    attachEvents()
+    user.login()
   }
 
   return {
