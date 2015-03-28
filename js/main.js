@@ -68,7 +68,7 @@ app.main = (function($, _) {
       if ('member_photo' in user) {
         return user.member_photo.photo_link
       } else {
-        return '/images/darth.png'
+        return 'images/darth.png'
       }
     }
   }
