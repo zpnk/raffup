@@ -1,0 +1,156 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+  background: black url("/images/stars.png") no-repeat top center;
+  font: 16px/1.3 "Press Start 2P", monospace;
+  -webkit-font-smoothing: none;
+  color: white;
+  margin: 0 0 50px 0;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+h3 {
+  font-size: 25px;
+}
+
+h4 {
+  font-size: 22px;
+}
+
+a {
+  color: red;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+}
+
+a:hover {
+  color: white;
+}
+
+a.border {
+  padding: 5px;
+}
+
+img {
+  height: 60px;
+  width: 60px;
+  padding: 5px;
+}
+
+main {
+  width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.meetup, .attendees {
+  margin: 50px 0 50px 0;
+}
+
+.raffle {
+  font-size: 20px;
+  margin-top: 30px;
+  padding: 10px;
+}
+
+.winner img {
+  height: 100px;
+  width: auto;
+}
+
+footer {
+  width: 100%;
+  height: 15px;
+  position: absolute;
+  bottom: 0;
+  font-size: 12px;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-around;
+  -webkit-justify-content: space-between;
+}
+
+footer > div {
+  width: 33.33%;
+}
+
+.come-hang { text-align: center; }
+.fork-this { text-align: right; }
+
+/* pixel border */
+
+.border {
+  box-shadow: 3px 0 black, -3px 0 black, 0 -3px black, 0 3px black,
+              6px 0 red,   -6px 0 red,   0 -6px red,   0 6px red,
+              0 0 0 3px red;
+}
+
+/* rainbow text */
+
+.rainbow {
+  background-image:
+    linear-gradient(
+      to right,
+      red 0%, yellow 15%, lime 30%, aqua 50%, blue 65%, fuchsia 80%, red 100%
+    );
+  color:transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* blink animation | courtesy of @visualidiot */
+
+.blink:hover {
+    -webkit-animation: blink .75s linear infinite;
+    -moz-animation: blink .75s linear infinite;
+    -ms-animation: blink .75s linear infinite;
+    -o-animation: blink .75s linear infinite;
+    animation: blink .75s linear infinite;
+}
+
+@-webkit-keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    50.01% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@-moz-keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    50.01% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@-ms-keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    50.01% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@-o-keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    50.01% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    50.01% { opacity: 0; }
+    100% { opacity: 0; }
+}

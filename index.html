@@ -2,19 +2,42 @@
 <html>
   <head>
     <title>Raffup</title>
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Press+Start+2P" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <body>
 
-    <a class="login" href="https://secure.meetup.com/oauth2/authorize">
-      Login with Meetup
-    </a>
+    <main>
+      <h2>Vegas.<span class="rainbow">JS(raffle)</span></h2>
 
-    <section class="meetup"></section>
+      <a href="https://secure.meetup.com/oauth2/authorize" class="login blink border">
+        Login with meetup
+      </a>
 
-    <section class="attendees"></section>
+      <section class="meetup"></section>
 
-    <section class="winner"></section>
+      <section class="winner"></section>
+
+      <section class="attendees"></section>
+    </main>
+
+    <footer>
+      <div class="promote-self">
+        <a href="//twitter.com/zpnk">@zpnk</a>
+        &amp;&amp;
+        <a href="//twitter.com/seanghagstrom">@seanghagstrom</a>
+      </div>
+
+      <div class="come-hang">
+        <a href="//twitter.com/vegasjs">@vegasjs</a>
+      </div>
+
+      <div class="fork-this">
+        fork(<a href="//github.com/zpnk/raffup">this</a>)
+      </div>
+    </footer>
 
     <script type="text/template" class="meetup-tpl">
       <h3><%= name %></h3>
@@ -22,20 +45,21 @@
         <%= new Date(time).toDateString() %> <br />
         <%= yes_rsvp_count + ' ' + group.who %>
       </p>
+      <a class="raffle blink border">
+        Raffle!
+      </a>
     </script>
 
     <script type="text/template" class="attendees-tpl">
       <% attendees.forEach(function(attendee) { %>
         <img src="<%= photo(attendee) %>"
-            title="<%= attendee.member.name %>" style="height:80px" />
+            title="<%= attendee.member.name %>" />
       <% }) %>
-      <br />
-      <button class="raffle">Raffle!</button>
     </script>
 
     <script type="text/template" class="winner-tpl">
-      <p>Congratulations, <b><%= name %></b>!</p>
-      <img src="<%= photo %>" style="height:80px" />
+      <h4>Congratulations, <span class="rainbow"><%= name %></span>!</h4>
+      <img src="<%= photo %>" class="border" />
     </script>
 
     <script src="bower_components/jquery/dist/jquery.js"></script>

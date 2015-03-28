@@ -74,7 +74,7 @@ app.main = (function($, _) {
       if ('member_photo' in user) {
         return user.member_photo.photo_link
       } else {
-        return 'https://randomuser.me/api/portraits/lego/1.jpg'
+        return '/images/darth.png'
       }
     }
   }
