@@ -1,8 +1,0 @@
-{
-  "name": "raffup",
-  "private": true,
-  "dependencies": {
-    "jquery": "~2.1.3",
-    "underscore": "~1.8.2"
-  }
-}
