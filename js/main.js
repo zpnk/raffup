@@ -38,17 +38,11 @@ app.main = (function($, _) {
       user.name = data.name
       user.id   = data.id
       app.utils.removeParams()
-      render.logout()
+      $elements.login.hide()
     }
   }
 
   var render = {
-    logout: function() {
-      $elements.login.html('Logout').on('click', function(){
-        this.href = window.location.href
-      })
-    },
-
     meetup: function(data) {
       var template = $elements.meetupTpl(data)
       $elements.meetup.html(template)
