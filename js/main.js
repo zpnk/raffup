@@ -53,7 +53,7 @@ app.main = (function($, _) {
         attendees: data.results,
         photo:     render.photo
       })
-      $elements.attendees.html(template)
+      $elements.attendees.html(template).addClass('bounceInDown')
     },
 
     winner: function(winner) {
@@ -62,6 +62,10 @@ app.main = (function($, _) {
         photo: render.photo(winner)
       })
       $elements.winner.html(template)
+      $elements.winner.addClass('bounceInDown')
+      $elements.winner.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+        $(this).removeClass('bounceInDown')
+      })
     },
 
     photo: function(user) {
