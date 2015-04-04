@@ -1,6 +1,8 @@
 <!doctype html>
 <html>
   <head>
+    <meta charset='utf-8'>
+
     <title>Raffup</title>
 
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Press+Start+2P" />
@@ -42,8 +44,8 @@
     <script type="text/template" class="meetup-tpl">
       <h3><%= name %></h3>
       <p>
-        <%= new Date(time).toDateString() %> <br />
-        <%= yes_rsvp_count + ' ' + group.who %>
+        <%= time %> <br />
+        <%= rsvps + ' ' + who %>
       </p>
       <a class="raffle blink border">
         Raffle!

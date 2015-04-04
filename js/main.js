@@ -43,8 +43,13 @@ app.main = (function($, _) {
   }
 
   var render = {
-    meetup: function(data) {
-      var template = $elements.meetupTpl(data)
+    meetup: function(meetup) {
+      var template = $elements.meetupTpl({
+        name:  meetup.name,
+        time:  new Date(meetup.time).toDateString(),
+        rsvps: meetup.yes_rsvp_count,
+        who:   meetup.group.who
+      })
       $elements.meetup.html(template)
     },
 
