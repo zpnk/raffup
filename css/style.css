@@ -101,13 +101,14 @@ footer > div {
 
 .rainbow {
   background-image:
+    -webkit-linear-gradient(transparent, transparent),
     linear-gradient(
       to right,
       red 0%, yellow 15%, lime 30%, aqua 50%, blue 65%, fuchsia 80%, red 100%
     );
-  color:transparent;
+  color: yellow;
+  -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-clip: text;
 }
 
 /* blink animation | courtesy of @visualidiot */
