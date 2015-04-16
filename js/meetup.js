@@ -15,9 +15,9 @@ app.meetup = (function($) {
   var getMeetup = function() {
     $.get(BASE_URL + '/events', {
       access_token:  app.main.user.token,
-      group_urlname: 'VegasJS',
+      group_urlname: 'vegasjs',
       status:        'upcoming,past',
-      rsvp:          'yes',
+      time:          '-12m,1d',
       desc:          true,
       page:          1
     }).done(function(data) {
